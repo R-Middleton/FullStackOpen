@@ -35,24 +35,7 @@ const Total = (props) => {
   )
 }
 
-// Anything in comments is following along with lessons not exercise related, I should refactor this out into a separate project
-const Display = ({counter }) => <div>{counter}</div>
-
-const Button = ({ handleClick, text }) => (
-    <button onClick={handleClick}>
-      {text}
-    </button>
-)
-//
-
 const App = () => {
-
-  //
-  const [ counter, setCounter ] = useState(0)
-  const increaseByOne = () => setCounter(counter + 1)
-  const setToZero = () => setCounter(0)
-
-  //
 
   const course = {
     name: 'Half Stack application development',
@@ -77,11 +60,6 @@ const App = () => {
       <Header course={course.name} />
       <Content parts={course.parts} />
       <Total parts={course.parts} />
-
-
-      <Display counter={counter} />
-      <Button handleClick={increaseByOne} text='plus' />
-      <Button handleClick={setToZero} text='reset' />
     </div>
   )
 }
