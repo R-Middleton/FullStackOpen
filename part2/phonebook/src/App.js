@@ -14,12 +14,23 @@ const App = () => {
           id: persons.length + 1
       }
 
-      setPersons(persons.concat(personObject))
+      var names = persons.map((person) => person.name)
+      if(names.includes(personObject.name)) {
+        window.alert(`${newName} is already added to phonebook`)
+      } else {
+        setPersons(persons.concat(personObject))
+      }
+
       setNewName('')
   }
 
   const handleNameChange = (event) => {
       console.log(event.target.value)
+      /*if (!PermissionStatus.includes(event.target.value)) {
+        setNewName(event.target.value)
+      } else {
+        window.alert(`${event.target.value} is already added to phonebook`)
+      }*/
       setNewName(event.target.value)
   }
 
