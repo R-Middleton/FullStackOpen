@@ -3,7 +3,6 @@ import DetailCountry from './DetailCountry'
 
 const Countries = ({ countries, filter }) => {
     const [showResults, setShowResults] = useState(false)
-    const onClick = (name) => setShowResults(name)
 
     const filtered = countries.filter(country => {
         return country.name.toLowerCase().includes(filter.toLowerCase())
@@ -13,14 +12,16 @@ const Countries = ({ countries, filter }) => {
         return (
             <div key={index}>
                 {country.name}
-                <input type="submit" value="Show" onClick={()=> onClick(country.name)} />
-                {showResults === country.name ? <DetailCountry
-                    name={country.name}
-                    capital={country.capital}
-                    population={country.population}
-                    languages={country.languages}
-                    flag={country.flag}
-                /> : null}
+                <input type="submit" value="Show" onClick={() => setShowResults(country)} />
+                {showResults.name === country.name ?
+                    <DetailCountry
+                        name={country.name}
+                        capital={country.capital}
+                        population={country.population}
+                        languages={country.languages}
+                        flag={country.flag}
+                        singleResult={false}
+                    /> : null}
             </div>
         )
     })
@@ -39,6 +40,7 @@ const Countries = ({ countries, filter }) => {
                     population={selectedCountry.population}
                     languages={selectedCountry.languages}
                     flag={selectedCountry.flag}
+                    singleResult={true}
                 />
             </div>
         )

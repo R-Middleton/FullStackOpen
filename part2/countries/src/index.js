@@ -17,7 +17,6 @@ const App = () => {
 
     const handleFilterChange = (event) => {
         setNewFilter(event.target.value)
-        console.log(newFilter)
     }
 
     return (
