@@ -9,6 +9,7 @@ const App = () => {
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
   const [newFilter, setNewFilter] = useState('')
+  const [notification, setNewNotification] = useState(null)
 
   useEffect(() => {
     axios.get('http://localhost:3001/persons')
@@ -16,6 +17,12 @@ const App = () => {
       setPersons(response.data)
     })
   }, [])
+
+  useEffect(() => {
+    setTimeout(() => {
+      setNewNotification(null)
+    }, 5000)
+  }, [notification])
 
   const addPerson = (event) => {
     event.preventDefault()
@@ -32,6 +39,7 @@ const App = () => {
       setPersons(persons.concat(personObject))
     }
 
+    setNewNotification(`Added ${newName}`)
     setNewName('')
     setNewNumber('')
   }
@@ -48,9 +56,22 @@ const App = () => {
     setNewFilter(event.target.value)
   }
 
+  const Notification = ({ message }) => {
+    if (message == null) {
+      return null
+    }
+
+    return (
+      <div className="notification">
+        {message}
+      </div>
+    )
+  }
+
   return (
     <div>
       <h2>Phonebook</h2>
+      <Notification message={notification} />
       <Filter newFilter={newFilter} handleFilterChange={handleFilterChange} />
 
       <h3>add a new</h3>
